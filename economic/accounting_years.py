@@ -1,6 +1,4 @@
-import requests
-import json
-import exceptions
+import pagination
 
 
 class AccountingYear:
@@ -27,16 +25,7 @@ def parse_json(json_obj):
                           year=json_obj.get('year'))
 
 
-def get_accounting_years(filters=None,
-                         sort_by=None):
-    r = requests.get('https://restapi.e-conomic.com/accounting-years',
-                     headers={'X-AgreementGrantToken': 'demo',
-                              'X-AppSecretToken': 'demo'},
-                     data='',
-                     params={'filters': filters, 'sort': sort_by})
-    exceptions.is_ok_or_throw_exception(r)
-
-    j = json.loads(r.text)
-    json_list = j['collection']
-    obj_list = [parse_json(o) for o in json_list]
-    return r.text
+def get_all(auth,
+            filters=None,
+            sort_by=None):
+    return pagination.get_all_objects(auth, parse_json, 'accounting-years', filters, sort_by)
