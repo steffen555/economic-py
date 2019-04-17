@@ -6,10 +6,6 @@ class AccountingYear:
     toDate = None
     closed = None
     year = None
-    __periods = None
-    __entries = None
-    __totals = None
-    __vouchers = None
 
     def __init__(self, from_date, to_date, closed, year):
         self.fromDate = from_date
