@@ -1,4 +1,4 @@
-import pagination
+import api_communicator
 
 
 class AccountingYear:
@@ -13,6 +13,18 @@ class AccountingYear:
         self.closed = closed
         self.year = year
 
+    def get_entries(self):
+        raise NotImplementedError
+
+    def get_periods(self):
+        raise NotImplementedError
+
+    def get_totals(self):
+        raise NotImplementedError
+
+    def get_vouchers(self):
+        raise NotImplementedError
+
 
 def parse_json(json_obj):
     return AccountingYear(from_date=json_obj.get('fromDate'),
@@ -24,4 +36,4 @@ def parse_json(json_obj):
 def get_all(auth,
             filters=None,
             sort_by=None):
-    return pagination.get_all_objects(auth, parse_json, 'accounting-years', filters, sort_by)
+    return api_communicator.get_all_objects(auth, parse_json, 'accounting-years', filters, sort_by)
