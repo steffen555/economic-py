@@ -2,11 +2,19 @@ import api_communicator
 
 
 class Department:
-    department_number = None
-    name = None
 
-    def __init__(self, departmentNumber):
-        self.department_number = departmentNumber
+    def __init__(self, department_number):
+        self.name = None
+        self.department_number = department_number
+
+    def to_dict(self):
+        dict = {}
+        if self.department_number:
+            dict['departmentNumber'] = self.department_number
+        if self.name:
+            dict['name'] = self.name
+
+        return dict
 
 
 def parse_json(json_obj):

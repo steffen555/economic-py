@@ -2,21 +2,20 @@ import api_communicator
 
 
 class Employee:
-    barred = None
-    email = None
-    employee_group = None
-    employee_number = None
-    name = None
-    phone = None
 
     def __init__(self):
-        pass
+        self.barred = None
+        self.email = None
+        self.employee_group = None
+        self.employee_number = None
+        self.name = None
+        self.phone = None
 
 
 class EmployeeGroup:
-    employee_group_number = None
 
     def __init__(self):
+        self.employee_group_number = None
         pass
 
 

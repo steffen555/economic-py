@@ -24,6 +24,25 @@ def get_all_objects(auth, parse_fun, url,
     return obj_list
 
 
+def get_single_object(auth, parse_fun, url, id):
+    r = requests.get('https://restapi.e-conomic.com/%s/%s' % (url, id),
+                     headers=auth.get_request_headers())
+    is_ok_or_throw_exception(r)
+    j = json.loads(r.text)
+    obj = parse_fun(j)
+    return obj
+
+
+def post_object(auth, url, obj):
+    dict = obj.to_dict()
+    r = requests.post('https://restapi.e-conomic.com/%s' % url,
+                      json=dict,
+                      headers=auth.get_request_headers(),
+                      timeout=10)
+    is_ok_or_throw_exception(r)
+    return r.json()
+
+
 def is_ok_or_throw_exception(request):
     if request.status_code == 400:
         raise Exception('400 Bad Request. The request you made was somehow malformed. A malformed request could be '

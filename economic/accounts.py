@@ -2,21 +2,20 @@ import api_communicator
 
 
 class Account:
-    account_number = None
-    accounts_summed = []
-    account_type = None
-    balance = None
-    barred = None
-    block_direct_entries = None
-    contra_account = None
-    debit_credit = None
-    draft_balance = None
-    name = None
-    total_from_account = None
-    vat_account = None
 
     def __init__(self,
                  account_number):
+        self.accounts_summed = []
+        self.account_type = None
+        self.balance = None
+        self.barred = None
+        self.block_direct_entries = None
+        self.contra_account = None
+        self.debit_credit = None
+        self.draft_balance = None
+        self.name = None
+        self.total_from_account = None
+        self.vat_account = None
         self.account_number = account_number
 
     def get_accounting_years(self):
@@ -24,10 +23,9 @@ class Account:
 
 
 class AccountSummed:
-    from_account = None
-    to_account = None
-
     def __init__(self):
+        self.from_account = None
+        self.to_account = None
         pass
 
 
@@ -44,7 +42,7 @@ def parse_json(json_obj):
     account.debit_credit = json_obj.get('debitCredit')
     account.draft_balance = json_obj.get('draftBalance')
     account.name = json_obj.get('name')
-    account.total_from_account = parse_json(json_obj.get('accountNumber'))
+    account.total_from_account = parse_json(json_obj.get('totalFromAccount'))
     account.vat_account = None  # TODO: When VAT accounts are done
     return account
 
